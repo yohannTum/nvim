@@ -134,7 +134,7 @@ cmp.setup {
 			end
 		end, { "i", "s" }),
 		['<C-h>'] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable(-1) then
+			if luasnip.expand_or_jumpable() then
 				luasnip.jump(-1)
 			else
 				fallback()
@@ -146,6 +146,8 @@ cmp.setup {
 		},
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<A-k>"] = cmp.mapping.scroll_docs(-4),
+		["<A-j>"] = cmp.mapping.scroll_docs(4),
 	},
 	formatting = {
 		fields = { "abbr", "kind", "menu" },
@@ -173,6 +175,7 @@ cmp.setup {
 		-- Youtube: Could enable this only for lua, but nvim_lua handles that already.
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "path", option = { trailing_slash = true } },
 		{ name = "luasnip" },
 		{ name = "buffer", keyword_length = 5 },

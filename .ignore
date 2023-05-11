@@ -1,1 +1,5 @@
 plugin
+.git
+packer.log
+plugins.log
+stdout.log

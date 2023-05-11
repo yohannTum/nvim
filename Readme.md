@@ -1,4 +1,9 @@
 <h1 align="center">
+	<a href="">
+		<img alt="Last commit" src="https://img.shields.io/github/last-commit/Alexis12119/nvim-config?style=for-the-badge&logo=git&color=000F10&logoColor=dark orange&labelColor=302D41"/>
+	</a>
+
+	[![](https://img.shields.io/badge/Neovim-0.8+-blueviolet.svg?style=for-the-badge&color=000F10&logo=Neovim&logoColor=green&labelColor=302D41)](https://github.com/neovim/neovim)
   <br>
 	<a href="https://github.com/neovim/neovim">
 		<img src="https://raw.githubusercontent.com/neovim/neovim.github.io/master/logos/neovim-logo-300x87.png" alt="Neovim">
@@ -49,14 +54,27 @@ sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake c
 
 <br>
 
-Building neovim from source :
+Building neovim 0.8.3 from source :
 
 ```bash
-git clone https://github.com/neovim/neovim.git ~/neovim
-cd ~/neovim
-git checkout release-0.8
-make CMAKE_BUILD_TYPE=Release
-sudo make install
+git clone https://github.com/neovim/neovim.git ~/neovim-0.8.3
+cd ~/neovim-0.8.3
+git checkout v0.8.3
+make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim-0.8.3"
+make install
+export PATH="$HOME/neovim/bin:$PATH"
+```
+There is a CMake target to uninstall after make install:
+
+```bash
+sudo cmake --build build/ --target uninstall
+```
+
+Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
+
+```bash
+sudo rm /usr/local/bin/nvim
+sudo rm -r /usr/local/share/nvim/
 ```
 > **Note :**
 > [Official documentation](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source)
@@ -73,11 +91,15 @@ Required binaries :
 - java (sdk 17)
 - fd
 - fzf
+- nodejs
+- pip3
+- git < 2.31.0 (https://launchpad.net/~git-core/+archive/ubuntu/ppa) for diffview.nvim
 ```
 
 Ubuntu :
 ```bash
 sudo apt install fd-find openjdk-17-jdk fzf pandoc
+sudo add-apt-repository ppa:git-core/ppa -y # git < 2.31.0
 ```
 </p>
 </details>
@@ -181,3 +203,26 @@ set -ag terminal-overrides ",xterm-256color:RGB" # tmux 3.2
 - [LunarVim](https://github.com/LunarVim/LunarVim) ([Chris@Machine](https://github.com/ChristianChiarulli))
 
 # Ressources
+
+Nvim :
+- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+- https://github.com/rockerBOO/awesome-neovim
+- https://github.com/neovim/nvim-lspconfig/wiki/Language-specific-plugins
+Symobols :
+- https://www.vertex42.com/ExcelTips/unicode-symbols.html
+- https://fontawesome.com/v5/cheatsheet/free/brands
+Git things :
+- https://www.conventionalcommits.org/en/v1.0.0/#summary
+- https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13 (Other referencies at the end!)
+- https://github.com/qoomon/git-conventional-commits
+
+- https://www.novaway.fr/blog/tech/specification-conventional-commits
+- https://cbea.ms/git-commit/
+- https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733
+- https://github.com/angular/angular.js/blob/v1.7.2/DEVELOPERS.md#type
+- https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
+- https://medium.com/@steveamaza/how-to-write-a-proper-git-commit-message-e028865e5791
+- https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08
+- https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/SubmittingPatches?id=HEAD
+- https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+- https://cbea.ms/git-commit/

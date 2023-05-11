@@ -92,6 +92,7 @@ local mappings = {
 	k = { "<C-w>k", "Window " },
 	l = { "<C-w>l", "Window " },
 	c = { "<C-w>c", "Window " },
+	C = { ":tabclose<CR>", "tab close " },
 	s = { "<C-w>s", "Window ﲔ" },
 	v = { "<C-w>v", "Window ﲖ" },
 
@@ -119,11 +120,6 @@ local mappings = {
 		s = { "<cmd>PackerSync<cr>", "Sync" },
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		r = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
-
-	g = {
-		name = "Git",
-		s = { "<cmd>Neogit<CR>", "Status" },
 	},
 }
 

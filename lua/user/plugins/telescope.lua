@@ -42,9 +42,20 @@ _G.FindFiles = function(preview)
 	})
 end
 
+-- require('telescope.builtin') -- todo : git commit live grep
+
+local whichkey_status, whichkey = pcall(require, "which-key")
+if whichkey_status then
+	whichkey.register({ ["<Leader>/G"] = { name = "Git" } })
+	whichkey.register({ ["<Leader>/w"] = { name = "Workspaces" } })
+end
+
 keymap("n", "<Leader>/f", ":lua FindFiles(false)<CR>", optsdesc('Find Files'))
 keymap("n", "<Leader>/F", ":lua FindFiles(nil)<CR>", optsdesc('Find Files with preview'))
 keymap("n", "<Leader>/g", ":Telescope live_grep<CR>", optsdesc('Live Grep'))
 keymap("n", "<Leader>/b", ":Telescope buffers<CR>", optsdesc('Buffers'))
 keymap("n", "<Leader>/h", ":Telescope help_tags<CR>", optsdesc('Help Tags'))
 keymap("n", "<Leader>/c", ":Telescope commands<CR>", optsdesc('Help Tags'))
+keymap("n", "<Leader>/Gc", ":Telescope git_commits<CR>", optsdesc('Git commits'))
+keymap("n", "<Leader>/Gb", ":Telescope git_branches<CR>", optsdesc('Git branches'))
+keymap("n", "<Leader>/Gs", ":Telescope git_status<CR>", optsdesc('Git status'))

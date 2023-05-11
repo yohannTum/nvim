@@ -28,7 +28,7 @@ M.setup = function()
 		float = {
 			focusable = true,
 			style = "minimal",
-			border = "none", -- single, double, rounded, solid, shadow, {...}
+			border = "solid", -- single, double, rounded, solid, shadow, {...}
 			source = "always",
 			header = "",
 			prefix = "",
@@ -37,18 +37,19 @@ M.setup = function()
 
 	vim.diagnostic.config(config)
 
-	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	-- 	border = "rounded",
-	-- })
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+	})
 
-	-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	-- 	border = "rounded",
-	-- })
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+		vim.lsp.handlers.signature_help,
+		{ border = "rounded", focus = true }
+	)
 end
 
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
 		augroup lsp_document_highlight
@@ -94,6 +95,8 @@ local function lsp_keymaps(bufnr)
 		optsdesc('LSP implementation'))
 	bufkeymap(bufnr, 'n', '<Leader>ts', ':lua vim.lsp.buf.signature_help()<CR>',
 		optsdesc('LSP signature help'))
+	bufkeymap(bufnr, 'i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+		optsdesc('LSP signature help'))
 	-- bufkeymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { desc = 'LSP add workspace folder', noremap = true, silent = true })
 	-- bufkeymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { desc = 'LSP remove workspace folder', noremap = true, silent = true })
 	bufkeymap(bufnr, 'n', '<Leader>ti',
@@ -107,9 +110,9 @@ local function lsp_keymaps(bufnr)
 		optsdesc('LSP code action'))
 	bufkeymap(bufnr, 'n', '<Leader>tr', ':lua vim.lsp.buf.references()<CR>',
 		optsdesc('LSP references'))
-	bufkeymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>',
+	bufkeymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.format({async = true})<CR>',
 		optsdesc('LSP formatting'))
-	bufkeymap(bufnr, 'v', '<Leader>f', ':lua vim.lsp.buf.range_formatting()<CR>',
+	bufkeymap(bufnr, 'v', '<Leader>f', ':lua vim.lsp.buf.format({range = {vim.api.nvim_buf_get_mark(0, "<"), vim.api.nvim_buf_get_mark(0, ">")}, async = true})<CR>',
 		optsdesc('LSP formatting'))
 
 	-- Telescope
@@ -136,8 +139,14 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		client.resolved_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingProvider = false
 	end
+	require("lsp_signature").setup({
+		bind = true,
+		hint_enable = false,
+		timer_interval = 20,
+		extra_trigger_chars = {"(", ","}
+	})
 	lsp_whichkey(bufnr)
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)

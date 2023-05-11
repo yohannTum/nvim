@@ -10,7 +10,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 		"https://github.com/wbthomason/packer.nvim",
 		install_path,
 	}
-	print "Installing packer close and reopen Neovim..."
+	print "Installing packer.. close and reopen Neovim..."
 	vim.cmd [[packadd packer.nvim]]
 end
 
@@ -46,15 +46,24 @@ return packer.startup(function(use)
 
 	-- Colorschemes
 	-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Colorschemes
-	-- use { 'rrethy/nvim-base16' } -- too much
-	-- use { 'ellisonleao/gruvbox.nvim' } -- broken?? need airline support
-	use { 'gruvbox-community/gruvbox' }
+	use { 'ellisonleao/gruvbox.nvim' } -- broken?? need airline support
+	-- use { 'gruvbox-community/gruvbox' } -- broken??
+	-- use { 'folke/lsp-colors.nvim' }
 	use { 'sainnhe/gruvbox-material' }
+	use {
+		'luisiacc/gruvbox-baby',
+		branch = 'main'
+	}
+	use { 'edeneast/nightfox.nvim' }
+	use { 'tanvirtin/monokai.nvim' }
+	use { 'bluz71/vim-moonfly-colors', as = 'moonfly' }
+	use { 'rose-pine/neovim' }
+	use { 'christianchiarulli/nvcode-color-schemes.vim' }
+	use { 'ofirgall/ofirkai.nvim' }
 	-- need to test them
 	use { 'glepnir/zephyr-nvim' }
 	use { 'olimorris/onedarkpro.nvim' }
 	use { 'folke/tokyonight.nvim' }
-	use { 'edeneast/nightfox.nvim' }
 	use { 'navarasu/onedark.nvim' }
 	use { 'shaunsingh/nord.nvim' }
 	use { 'rafamadriz/neon' }
@@ -62,7 +71,6 @@ return packer.startup(function(use)
 	use { 'Mofiqul/dracula.nvim' }
 	use { 'adisen99/codeschool.nvim' }
 	use { 'kaiuri/nvim-juliana' }
-	use { 'tanvirtin/monokai.nvim' }
 	use { 'nekonako/xresources-nvim' }
 	use { 'catppuccin/nvim' }
 	-- use { 'artanikin/vim-synthwave84' }
@@ -71,14 +79,21 @@ return packer.startup(function(use)
 	-- use { 'rafi/awesome-vim-colorschemes' } -- doesn't seem to support treesitter
 	-- use { 'rktjmp/lush.nvim' }
 
+	-- MEH colorschemes
+	use { 'marko-cerovac/material.nvim' }
+
 	-- Others
-	use { 'vim-airline/vim-airline' }
-	use { 'tpope/vim-fugitive' } -- TODO: keymap
+	-- use { 'vim-airline/vim-airline' }
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use { 'andweeb/presence.nvim' }
 	use { 'junegunn/fzf' }
 	use { 'lervag/vimtex' }
 	use { 'mbbill/undotree' }
 	-- use { 'tpope/vim-surround' } -- TODO: keymap/options? -- not using it a lot
-	use { 'mattn/emmet-vim' } -- TODO: keymap/options?
+	-- use { 'mattn/emmet-vim' } -- TODO: keymap/options?
 	use { 'jremmen/vim-ripgrep' } -- TODO: keymap/options?
 
 	-- use {
@@ -94,16 +109,23 @@ return packer.startup(function(use)
 	--     end
 	-- }
 
-	-- use { 'hrsh7th/nvim-compe' } -- outdated
+	-- Git
+	use { 'tpope/vim-fugitive' } -- TODO: keymap
+	-- use { 'jesseduffield/lazygit' } -- TODO: using it??
+	use { 'TimUntersberger/neogit' }
+	use { 'lewis6991/gitsigns.nvim' }
+	use { 'sindrets/diffview.nvim' }
 
 	-- cmp plugins
 	use { 'hrsh7th/nvim-cmp' } -- The completion plugin
 	use { 'hrsh7th/cmp-buffer' } -- buffer completions
 	use { 'hrsh7th/cmp-cmdline' } -- cmdline completions
 	use { 'hrsh7th/cmp-nvim-lsp' } -- Lsp completion support
+	use { 'hrsh7th/cmp-nvim-lsp-signature-help' } -- Lsp signature
 	use { 'hrsh7th/cmp-nvim-lua' } -- Lsp completion support for lua
 	use { 'hrsh7th/cmp-path' } -- path completions
 	use { 'saadparwaiz1/cmp_luasnip' } -- snippet completions
+	use { 'ray-x/lsp_signature.nvim' }
 
 	-- snippets
 	use { 'L3MON4D3/LuaSnip' } --snippet engine
@@ -114,6 +136,7 @@ return packer.startup(function(use)
 	use { 'williamboman/mason.nvim' } -- simple to use language server installer
 	use { 'williamboman/mason-lspconfig.nvim' } -- simple to use language server installer
 	use { 'WhoIsSethDaniel/mason-tool-installer.nvim' } -- ensure language server, linter and more...
+	use { 'jay-babu/mason-null-ls.nvim' }
 
 	-- Whichkey
 	use {
@@ -123,7 +146,6 @@ return packer.startup(function(use)
 		end]]
 	}
 	-- Java
-	use { 'neoclide/coc.nvim', branch = 'release' }
 	use { 'mfussenegger/nvim-jdtls' }
 
 	-- Treesitter
@@ -137,15 +159,25 @@ return packer.startup(function(use)
 
 	-- Prettier
 	use { 'jose-elias-alvarez/null-ls.nvim' }
-	use { 'MunifTanjim/prettier.nvim' }
-	use { 'mhartington/formatter.nvim' }
+	-- use { 'MunifTanjim/prettier.nvim' }
+	-- use { 'mhartington/formatter.nvim' }
 
 	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		-- or                            , branch = '0.1.x',
-		requires = { { 'nvim-lua/plenary.nvim' } }
+		requires = {
+			{ 'nvim-lua/plenary.nvim' },
+
+			{ 'nvim-telescope/telescope-symbols.nvim' },
+			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+		}
 	}
+
+	use { "stevearc/dressing.nvim" }
+	use { "ziontee113/icon-picker.nvim", config = function()
+		require("icon-picker").setup({ disable_legacy_commands = true })
+	end }
 
 	-- Harpoon
 	use { 'ThePrimeagen/harpoon',
@@ -157,6 +189,7 @@ return packer.startup(function(use)
 	-- nvim tree
 	use {
 		'kyazdani42/nvim-tree.lua',
+		commit = '55028e30d7f897711c6469ea93a316f0f12223d4'
 		-- tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
 	use { 'kyazdani42/nvim-web-devicons' }
@@ -171,6 +204,15 @@ return packer.startup(function(use)
 	-- markdown
 	use { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end }
 
+	-- Lua
+	use { 'folke/neodev.nvim' }
+
+	-- Docker :/
+	use { '/home/yohann/github/nvim-dev-container' }
+	use { '/home/yohann/plugins/devcontainercli' }
+	-- use { 'jamestthompson3/nvim-remote-containers' }
+	use { 'miversen33/netman.nvim' }
+	-- use { 'esensar/nvim-dev-container' }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -1,74 +1,29 @@
-local null_ls = require("null-ls")
-local prettier = require("prettier")
+local null_ls_ok, null_ls = pcall(require,"null-ls")
+if not null_ls_ok then return end
+-- builtins :
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
+
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+-- local formatting = null_ls.builtins.formatting
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+-- local diagnostics = null_ls.builtins.diagnostics
+
+-- local completion = null_ls.builtins.completion
+
+-- local code_action = null_ls.builtins.code_actions
+-- local hover = null_ls.builtins.hover
+-- local test = null_ls.builtins._test
 
 null_ls.setup({
-	--[[on_attach = function(client, bufnr)
-        if client.resolved_capabilities.document_formatting then
-            vim.cmd("nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>")
-            -- format on save
-            vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
-        end
+	sources = {
+		-- diagnostics.eslint,
 
-        if client.resolved_capabilities.document_range_formatting then
-            vim.cmd("xnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
-        end
-    end,]]
-})
+		-- formatting.prettier,
 
+		-- formatting.stylua,
+		-- diagnostics.luacheck,
 
--- vim.cmd("autocmd BufWritePost * Format")
--- vim.cmd("autocmd BufWritePost * lua vim.lsp.buf.formatting()") -- infinite save bc async func, need handlers ?
--- vim.cmd("autocmd BufWritePost * lua vim.lsp.buf.formatting_sync()") -- format on save :/
-
-prettier.setup({
-	bin = 'prettier', -- or `prettierd`
-	filetypes = {
-		"css",
-		"graphql",
-		"html",
-		"javascript",
-		"javascriptreact",
-		"json",
-		"less",
-		"markdown",
-		"scss",
-		"typescript",
-		"typescriptreact",
-		"yaml",
+		-- completion.spell,
+		-- null_ls.builtins.completion.spell,
 	},
-
-	-- prettier format options (you can use config files too. ex: `.prettierrc`)
-	arrow_parens = "always",
-	bracket_spacing = true,
-	embedded_language_formatting = "auto",
-	end_of_line = "lf",
-	html_whitespace_sensitivity = "css",
-	jsx_bracket_same_line = false,
-	jsx_single_quote = false,
-	print_width = 80,
-	prose_wrap = "preserve",
-	quote_props = "as-needed",
-	semi = true,
-	single_quote = false,
-	tab_width = 2,
-	trailing_comma = "es5",
-	use_tabs = false,
-	vue_indent_script_and_style = false,
 })
-
-function format_prettier()
-	return {
-		exe = "npx",
-		args = { "prettier", "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-		stdin = true
-	}
-end
-
-require('formatter').setup {
-	logging = true,
-	filetype = {
-		javascript = { format_prettier },
-		typescript = { format_prettier },
-		typescriptreact = { format_prettier },
-	}
-}

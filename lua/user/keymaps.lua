@@ -3,6 +3,8 @@ local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
+-- TODO: https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work (save with sudo priviledges)
+
 -- Modes
 --	normal_mode = "n"
 --	insert_mode = "i"
@@ -51,10 +53,11 @@ https://vi.stackexchange.com/questions/26818/vim-not-storing-numbered-registers
 -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 keymap("v", "p", 'p:let @"=@0<CR>', opts) -- not overiding register, only in visual mode
 keymap("n", "<leader>p", '"+p', opts) -- paste from system clipboard
+keymap("v", "<leader>p", '"+p', opts) -- paste from system clipboard
 
 keymap("n", "<leader>y", '"+y', opts) -- copy into system clipboard
 keymap("v", "<leader>y", '"+y', { silent = true, noremap = true, desc = "paste into system clipboard" })
-keymap("n", "<leader>Y", '"+Y', term_opts)
+-- keymap("n", "<leader>Y", '"+Y', term_opts)
 
 -- Making it default? and map <leader>d as regular?
 -- Other solution : keymap("n", "<leader>d", '"zd', opts)
@@ -84,6 +87,10 @@ keymap("n", "<Leader>v", "<C-w>v", opts)
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 
+-- Horizontal scroll
+keymap("n", "zh", "zH", opts)
+keymap("n", "zl", "zL", opts)
+
 -- Vertical navigation
 keymap("n", "}", ":keepjumps normal! {<CR>", opts)
 keymap("n", "{", ":keepjumps normal! }<CR>", opts)
@@ -97,8 +104,18 @@ BetterCTRL_D = function()
 	local windowHalfHeight = vim.fn.floor(windowHeight / 2)
 
 	local line, _ = unpack(vim.api.nvim_win_get_cursor(0))
-	line = line + windowHalfHeight - 1
+	-- line = line + windowHalfHeight - 1
+	line = line + windowHalfHeight
+	if windowHeight % 2 == 0 then
+		line = line - 1
+	end
 	vim.fn.cursor(line, 0)
+
+	-- center camera with ctrl-e
+	-- local relativeCursor = line - windowHeight
+	-- print(relativeCursor)
+	-- local rowTopWindow, _ = unpack(vim.api.nvim_win_get_position(0))
+	-- print(rowTopWindow)
 end
 
 BetterCTRL_U = function() -- without having the window to move
@@ -107,7 +124,12 @@ BetterCTRL_U = function() -- without having the window to move
 	local windowHalfHeight = vim.fn.floor(windowHeight / 2)
 
 	local line, _ = unpack(vim.api.nvim_win_get_cursor(0))
-	line = line - windowHalfHeight + 1
+	-- line = line - windowHalfHeight + 1
+	line = line - windowHalfHeight
+	if windowHeight % 2 == 0 then
+		line = line + 1
+	end
+
 	if line < 1 then
 		line = 1
 	end

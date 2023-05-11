@@ -1,7 +1,7 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 
-local opts = {}
+-- local opts = {}
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
@@ -43,10 +43,57 @@ end
 
 -- vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 
+--[[
+red		#fb4934 #cc241d #9d0006
+orange	#fe8019 #d65d0e #af3a03
+blue	#83a598 #458588 #076678
+--]]
+
+-- GRUVBOX :h nvim-tree-highlight
+-- Folder
+-- vim.cmd[[highlight NvimTreeFolderName guifg=#458588]]
+-- vim.cmd[[highlight NvimTreeEmptyFolderName guifg=#458588]]
+-- vim.cmd[[highlight NvimTreeOpenedFolderName guifg=#83a598 gui=bold]]
+-- vim.cmd[[highlight NvimTreeFolderIcon guifg=#83a598]]
+
+
+-- General cursor line
+vim.cmd[[highlight CursorLineNr guifg=#b16286 guibg=#32302f]]
+vim.cmd[[highlight CursorLine guibg=#272822]]
+
+-- Folder v2
+vim.cmd[[highlight NvimTreeFolderName guifg=#ebdbb2]]
+vim.cmd[[highlight NvimTreeEmptyFolderName guifg=#ebdbb2]]
+vim.cmd[[highlight NvimTreeOpenedFolderName guifg=#ebdbb2 gui=bold]]
+vim.cmd[[highlight NvimTreeFolderIcon guifg=#83a598]]
+
+-- General
+vim.cmd[[highlight NvimTreeCursorLine guibg=#32302f]]
+vim.cmd[[highlight NvimTreeCursorLineNr guifg=#b16286 guibg=#32302f]]
+vim.cmd[[highlight NvimTreeNormal guifg=#fff6ea guibg=#272822]]
+vim.cmd[[highlight NvimTreeEndOfBuffer guibg=#272822]]
+vim.cmd[[highlight NvimTreeWindowPicker guifg=#fabd2f]]
+vim.cmd[[highlight NvimTreeRootFolder guifg=#7c6f64]]
+
+-- Git v1
+-- vim.cmd[[highlight NvimTreeGitStaged guifg=#fabd2f gui=bold]]
+-- vim.cmd[[highlight NvimTreeGitNew guifg=#fd971f gui=bold]]
+-- vim.cmd[[highlight NvimTreeGitDirty guifg=#e6db74 gui=bold]]
+-- vim.cmd[[highlight NvimTreeGitRenamed guifg=#e95678 gui=bold]]
+
+-- Git v2
+vim.cmd[[highlight NvimTreeGitStaged guifg=#b8bb26 gui=bold]] -- light green
+vim.cmd[[highlight NvimTreeGitNew guifg=#689d6a gui=bold]] -- dark aqua
+vim.cmd[[highlight NvimTreeGitDirty guifg=#e6db74 gui=bold]] -- yellow
+vim.cmd[[highlight NvimTreeGitRenamed guifg=#e95678 gui=bold]]
+
 nvim_tree.setup {
 	-- auto_close = true,
 	-- disable_netrw = true,
 	-- disable_window_picker = 0,
+	filesystem_watchers = {
+		enable = false
+	},
 	diagnostics = {
 		enable = true,
 		--   error
@@ -86,17 +133,26 @@ nvim_tree.setup {
 	-- quit_on_open = 0,
 	-- root_folder_modifier = ":t",
 	renderer = {
+		highlight_git = true,
 		icons = {
 			glyphs = {
 				default = "",
 				symlink = "",
 				git = {
 					-- unstaged = "~",
-					staged = ".",
+					-- unstaged = "○",
+					-- unstaged = "●",
+					unstaged = "•",
+					staged = "✓",
 					unmerged = "",
 					renamed = "➜",
-					deleted = "",
-					untracked = "U",
+					deleted = "",
+					-- untracked = "🞲",
+					-- untracked = "🞱",
+					-- untracked = "🞰",
+					-- untracked = "🞯",
+					untracked = "🟉",
+					-- untracked = "★",
 					ignored = "◌",
 				},
 			}
