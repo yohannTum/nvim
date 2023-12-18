@@ -1,14 +1,10 @@
-require('user.packer')
-
-require('user.colorscheme')
-require('user.completion')
-require('user.gitmerge')
-require('user.keymaps')
-require('user.lsp')
 require('user.options')
-require('user.plugins')
-require('user.treesitter')
+require('user.keymaps')
+require('user.lazy')
+
 require('user.utils')
+require('user.lsp')
+require('user.plugins')
 
 -- needs to be at the end for no reasons
-require('user.autorunner')
+-- require('user.autorunner')

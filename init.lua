@@ -8,7 +8,6 @@ if exists("g:neovide") " neovide settings :o
 endif
 ]]
 
-require('user.reload') -- allows you to reload your config
 local _, plenary_status = pcall(require, "plenary")
 if not plenary_status then return nil end
 require('user')

@@ -1,0 +1,6 @@
+-- local filename = vim.fn.expand("%:t")
+-- if not(filename:match('_%.c$') or filename:match('_%.cpp$') or filename:match('_%.h$') or filename:match('_%.hpp$')) then
+-- 	return
+-- end
+--
+-- vim.api.nvim_buf_set_keymap(0, "n", "\\b", "print('build...')", { noremap = false, silent = false, desc = 'cmake build' })

@@ -3,6 +3,7 @@ local diffview_ok, diffview = pcall(require, "diffview")
 if not diffview_ok then return end
 
 local whichkey_status, whichkey = pcall(require, "which-key")
+if not whichkey_status then return end
 
 -- Keymaps
 local keymap = vim.api.nvim_set_keymap

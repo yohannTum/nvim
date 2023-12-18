@@ -1,55 +1,7 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-	return
-end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-	return
-end
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
-require("luasnip/loaders/from_vscode").lazy_load()
-
--- local check_backspace = function()
--- 	local col = vim.fn.col "." - 1
--- 	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
-
-
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
--- local cmp_kinds = {
--- 	Text = '  ',
--- 	Method = '  ',
--- 	Function = '  ',
--- 	Constructor = '  ',
--- 	Field = '  ',
--- 	Variable = '  ',
--- 	Class = '  ',
--- 	Interface = '  ',
--- 	Module = '  ',
--- 	Property = '  ',
--- 	Unit = '  ',
--- 	Value = '  ',
--- 	Enum = '  ',
--- 	Keyword = '  ',
--- 	Snippet = '  ',
--- 	Color = '  ',
--- 	File = '  ',
--- 	Reference = '  ',
--- 	Folder = '  ',
--- 	EnumMember = '  ',
--- 	Constant = '  ',
--- 	Struct = '  ',
--- 	Event = '  ',
--- 	Operator = '  ',
--- 	TypeParameter = '  ',
--- }
-
---   פּ ﯟ   some other good icons
 local kind_icons = {
 	-- Text = "",
 	Text = "",
@@ -83,38 +35,14 @@ local kind_icons = {
 	TypeParameter = "",
 } -- find more here: https://www.nerdfonts.com/cheat-sheet
 
--- local kind_icons = {
---   '', -- Text
---   '', -- Method
---   '', -- Function
---   '', -- Constructor
---   '', -- Field
---   '', -- Variable
---   '', -- Class
---   'ﰮ', -- Interface
---   '', -- Module
---   '', -- Property
---   '', -- Unit
---   '', -- Value
---   '', -- Enum
---   '', -- Keyword
---   '﬌', -- Snippet
---   '', -- Color
---   '', -- File
---   '', -- Reference
---   '', -- Folder
---   '', -- EnumMember
---   '', -- Constant
---   '', -- Struct
---   '', -- Event
---   'ﬦ', -- Operator
---   '', -- TypeParameter
--- }
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 cmp.setup {
 	CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
 	mapping = {
-		-- ["<tab>"] = cmp.config.disable,
 		['<Enter>'] = cmp.mapping.confirm({ select = false }),
 		['<C-n>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -171,8 +99,6 @@ cmp.setup {
 	},
 	sources = {
 		{ name = "gh_issues" },
-
-		-- Youtube: Could enable this only for lua, but nvim_lua handles that already.
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },

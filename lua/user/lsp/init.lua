@@ -4,6 +4,11 @@ if not status_ok then
 	return
 end
 
-require("user.lsp.neodev") -- IMPORTANT: neodev before lspconfig
+require("user.lsp.neodev")
 require("user.lsp.mason")
-require("user.lsp.handlers").setup()
+require("user.lsp.mason_tool_installer")
+require("user.lsp.mason_lspconfig")
+require("user.lsp.lsp_signature")
+require("user.lsp.lspconfig")
+require("user.lsp.luasnip")
+require("user.lsp.nvim-cmp")

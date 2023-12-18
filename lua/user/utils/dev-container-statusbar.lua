@@ -1,6 +1,5 @@
 local ok, devcontainer = pcall(require, "devcontainer.status")
 if not ok then
-	-- print("package 'devcontainer.status' is not availaible... :/")
 	return nil
 end
 

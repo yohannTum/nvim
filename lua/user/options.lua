@@ -36,8 +36,8 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.o.termguicolors = true
 vim.opt.title = true
-vim.opt.timeoutlen = 800 -- time in milliseconds for whichkey to popup
 vim.opt.wildmenu = true
+vim.opt.winbar = '%=%m  %f'
 vim.opt.wrap = false
 
 -- TABS are better than spaces

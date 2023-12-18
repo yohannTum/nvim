@@ -137,16 +137,25 @@ local function lsp_whichkey(bufnr)
 	end
 end
 
+local function lsp_signature(bufnr)
+	local lsp_signature_ok, lsp_signature = pcall(require, "lsp_signature")
+	if lsp_signature_ok then
+		lsp_signature.on_attach({
+			bind = true,
+			hint_enable = false,
+			timer_interval = 20,
+			extra_trigger_chars = {"(", ","},
+			floating_window = true,
+			floating_window_above_cur_line = true,
+		}, bufnr)
+	end
+end
+
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
-	require("lsp_signature").setup({
-		bind = true,
-		hint_enable = false,
-		timer_interval = 20,
-		extra_trigger_chars = {"(", ","}
-	})
+	lsp_signature(bufnr)
 	lsp_whichkey(bufnr)
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
@@ -157,8 +166,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true -- cssls?
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then return end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+if status_ok then
+	M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+end
 
 return M

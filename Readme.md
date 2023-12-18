@@ -197,6 +197,12 @@ set -ag terminal-overrides ",xterm-256color:RGB" # tmux 3.2
 	- [ ] Global for all tabs with [barbar.nvim](https://github.com/romgrk/barbar.nvim#integration-with-filetree-plugins) or [this thread](https://www.reddit.com/r/neovim/comments/sey7l9/file_tree_as_a_sidebar/)?
 * [Airline.vim](https://github.com/vim-airline/vim-airline)
 	- [ ] Move to [lualine](https://github.com/nvim-lualine/lualine.nvim) for lsp support
+* Unit tests integrated (choose a plugin)
+	- [ ] [vim-test](https://github.com/vim-test/vim-test)
+	- [ ] [nvim-test](https://github.com/klen/nvim-test)
+	- [ ] [neo-test](https://github.com/nvim-neotest/neotest)
+	- [ ] [TJ Devries - Integrated Test Results in Neovim](https://www.youtube.com/watch?v=cf72gMBrsI0&t=186s&ab_channel=TJDeVries)
+	- [ ] [Link to code source : ](https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/scratch/automagic/part3.lua)
 
 # Credits
 - [nvim-basic-ide](https://github.com/LunarVim/nvim-basic-ide) ([Chris@Machine](https://github.com/ChristianChiarulli))

@@ -1,7 +1,10 @@
 local keymap = vim.api.nvim_set_keymap
 
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+
+local function opts_desc (desc)
+	return { noremap = true, silent = true, desc = desc }
+end
 
 -- TODO: https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work (save with sudo priviledges)
 
@@ -75,13 +78,14 @@ keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
 -- Better window navigation
-keymap("n", "<Leader>h", "<C-w>h", opts)
-keymap("n", "<Leader>j", "<C-w>j", opts)
-keymap("n", "<Leader>k", "<C-w>k", opts)
-keymap("n", "<Leader>l", "<C-w>l", opts)
-keymap("n", "<Leader>c", "<C-w>c", opts)
-keymap("n", "<Leader>s", "<C-w>s", opts)
-keymap("n", "<Leader>v", "<C-w>v", opts)
+keymap("n", "<Leader>h", "<C-w>h", opts_desc("Window "))
+keymap("n", "<Leader>j", "<C-w>j", opts_desc("Window "))
+keymap("n", "<Leader>k", "<C-w>k", opts_desc("Window "))
+keymap("n", "<Leader>l", "<C-w>l", opts_desc("Window "))
+keymap("n", "<Leader>c", "<C-w>c", opts_desc("Window "))
+keymap("n", "<Leader>s", "<C-w>s", opts_desc("Window ﲔ"))
+keymap("n", "<Leader>v", "<C-w>v", opts_desc("Window ﲖ"))
+keymap("n", "<Leader>C", ":tablclose<CR>", opts_desc("tab close "))
 
 -- Stay in indent mode
 keymap("v", ">", ">gv", opts)
@@ -155,7 +159,7 @@ keymap("n", "<Esc>", ":noh<CR>:echo ''<CR><Esc>", opts)
 -- vim.cmd("nnoremap <esc>^[ <esc>^[")
 
 -- Buffer keymaps
-keymap("n", "<Leader><Leader>bs", ":ls", opts) -- TODO: not day to day used keymaps = leader * 2 (lsp for example), search...
+keymap("n", "<Leader><Leader>bs", ":ls<CR>", opts) -- TODO: not day to day used keymaps = leader * 2 (lsp for example), search...
 -- keep <leader>l for ctrl-w_l for example : way faster
 -- https://www.youtube.com/watch?v=BdoizYjJHis&ab_channel=chris%40machine
 
