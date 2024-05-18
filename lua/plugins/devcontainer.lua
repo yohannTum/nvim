@@ -25,7 +25,8 @@
 -- call nvim_win_set_option(win, 'winhl', 'Normal:MyHighlight')
 --
 return {
-	dir = '/home/yohann/github/nvim-dev-container',
+	-- dir = '/home/yohann/github/nvim-dev-container',
+	dir = '/home/yohann/plugins/nvim-dev-container',
 	config = function ()
 		local devcontainer_ok, devcontainer = pcall(require,"devcontainer")
 		if not devcontainer_ok then return end

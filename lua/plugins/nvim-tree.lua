@@ -89,7 +89,7 @@ return {
 	commit = '55028e30d7f897711c6469ea93a316f0f12223d4',
 	-- tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	lazy = false,
-	dependencies = { 'kyazdani42/nvim-web-devicons' },
+	dependencies = { 'kyazdani42/nvim-web-devicons', tag = "nerd-v2-compat" },
 	keys = {
 		{"<Leader>u", ":lua NvimTreeToggle()<CR>", desc = "NvimTree Toggle", noremap = true , silent = true},
 		{"<Leader>U", ":lua NvimTreeFocusFile()<CR>", desc = "NvimTree Focus Current File", noremap = true, silent = true},

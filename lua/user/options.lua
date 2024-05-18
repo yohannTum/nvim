@@ -12,6 +12,7 @@ vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.errorbells = false
 vim.opt.expandtab = false
 vim.opt.fileencoding = "utf-8"
+vim.opt.fillchars:append({ eob = ' ' })
 vim.opt.hidden = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

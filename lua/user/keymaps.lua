@@ -173,3 +173,6 @@ keymap("n", "<Leader><Leader>bs", ":ls<CR>", opts) -- TODO: not day to day used 
 -- keymap("v", "<C-k>", ":m .-2<CR>==", opts)
 -- keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
 -- keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
+
+-- Disable annoying command line thing.
+vim.keymap.set('n', 'q:', ':q<CR>')

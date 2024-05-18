@@ -15,6 +15,11 @@ return {
 		keymap("n", "<A-t>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 		keymap("n", "<A-n>", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
 		keymap("n", "<A-s>", ":lua require('harpoon.ui').nav_file(4)<CR>", opts)
-		keymap("n", "<A-d>", ":lua require('harpoon.ui').nav_file(5)<CR>", opts)
+
+		keymap("n", "<A-m>", ":lua require('harpoon.ui').nav_file(5)<CR>", opts)
+		keymap("n", "<A-w>", ":lua require('harpoon.ui').nav_file(6)<CR>", opts)
+		keymap("n", "<A-v>", ":lua require('harpoon.ui').nav_file(7)<CR>", opts)
+		keymap("n", "<A-z>", ":lua require('harpoon.ui').nav_file(8)<CR>", opts)
+		keymap("n", "<A-d>", ":lua require('harpoon.ui').nav_file(9)<CR>", opts)
 	end,
 }

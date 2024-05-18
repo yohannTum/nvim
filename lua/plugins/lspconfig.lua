@@ -1,5 +1,8 @@
 return {
-	'williamboman/mason.nvim',
+	{
+		'williamboman/mason.nvim',
+		tag = "stable"
+	},
 	'williamboman/mason-lspconfig.nvim',
 	'neovim/nvim-lspconfig',
 	'folke/neodev.nvim',
