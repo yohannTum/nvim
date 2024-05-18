@@ -110,10 +110,10 @@ local function lsp_keymaps(bufnr)
 		optsdesc('LSP code action'))
 	bufkeymap(bufnr, 'n', '<Leader>tr', ':lua vim.lsp.buf.references()<CR>',
 		optsdesc('LSP references'))
-	bufkeymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.format({async = true})<CR>',
-		optsdesc('LSP formatting'))
-	bufkeymap(bufnr, 'v', '<Leader>f', ':lua vim.lsp.buf.format({range = {vim.api.nvim_buf_get_mark(0, "<"), vim.api.nvim_buf_get_mark(0, ">")}, async = true})<CR>',
-		optsdesc('LSP formatting'))
+	-- bufkeymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.format({async = true})<CR>',
+	-- 	optsdesc('LSP formatting'))
+	-- bufkeymap(bufnr, 'v', '<Leader>f', ':lua vim.lsp.buf.format({range = {vim.api.nvim_buf_get_mark(0, "<"), vim.api.nvim_buf_get_mark(0, ">")}, async = true})<CR>',
+	-- 	optsdesc('LSP formatting'))
 
 	-- Telescope
 	local telescope_ok, _ = pcall(require, "telescope")

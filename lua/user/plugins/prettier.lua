@@ -14,7 +14,7 @@ if not null_ls_ok then return end
 -- local hover = null_ls.builtins.hover
 -- local test = null_ls.builtins._test
 
-null_ls.setup({
+--[[null_ls.setup({
 	sources = {
 		-- diagnostics.eslint,
 
@@ -26,4 +26,4 @@ null_ls.setup({
 		-- completion.spell,
 		-- null_ls.builtins.completion.spell,
 	},
-})
+})--]]
