@@ -33,6 +33,11 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 
 	if server == "jdtls" then goto continue end
 
+	if server == "ts_ls" then
+		lspconfig["tsserver"].setup(opts)
+		goto continue
+	end
+
 	lspconfig[server].setup(opts)
 	::continue::
 end

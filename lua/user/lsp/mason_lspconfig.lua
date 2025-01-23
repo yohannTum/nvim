@@ -5,7 +5,9 @@ mason_lspconfig.setup({
 	ensure_installed = {},
 	automatic_installation = {
 		exclude = {
-			"rome"
+			"rome",
+			"phpcs",
+			"phpcbf"
 		}
 	}
 })
