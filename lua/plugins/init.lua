@@ -1,4 +1,10 @@
 return {
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 	'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
 	'nvim-lua/plenary.nvim', -- Useful lua functions used in lots of plugins
 	'lervag/vimtex',

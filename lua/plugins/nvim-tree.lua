@@ -151,7 +151,7 @@ return {
 		},
 		on_attach = function (bufnr)
 			nvim_tree_keymaps(bufnr)
-			nvim_tree_theme()
+			-- nvim_tree_theme()
 		end
 	}
 }

@@ -23,7 +23,12 @@
 -- let win = nvim_open_win(buf, 0, opts)
 -- " optional: change highlight, otherwise Pmenu is used
 -- call nvim_win_set_option(win, 'winhl', 'Normal:MyHighlight')
---
+
+-- Don't load the plugin if the directory doesn't exists
+if vim.fn.isdirectory("/home/yohann/plugins/nvim-dev-container") == 0 then
+	return {}
+end
+
 return {
 	-- dir = '/home/yohann/github/nvim-dev-container',
 	dir = '/home/yohann/plugins/nvim-dev-container',

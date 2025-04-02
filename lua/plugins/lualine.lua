@@ -1,8 +1,8 @@
 -- LSP clients attached to buffer
-local clients_lsp = function ()
+local clients_lsp = function()
 	local bufnr = vim.api.nvim_get_current_buf()
 
-	local clients = vim.lsp.get_active_clients({bufnr = bufnr})
+	local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
 	if next(clients) == nil then
 		return ''
 	end
@@ -31,10 +31,11 @@ return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {
 		'kyazdani42/nvim-web-devicons',
+		'github-theme'
 	},
 	config = {
 		options = {
-			theme = 'jellybeans',
+			theme = 'ayu_mirage',
 			-- theme = require("ofirkai.statuslines.lualine").theme,
 			section_separators = { left = '', right = '' },
 			component_separators = { left = '┃', right = '│' },
@@ -51,14 +52,14 @@ return {
 			lualine_c = {
 				'filename',
 				-- everything that is loading/processing
-				function ()
+				function()
 					return require("user.utils.dev-container-statusbar").status()
 				end,
 			},
 			lualine_x = {
 				{
 					'diagnostics',
-					symbols = { error = ' ', warn = ' ', info = ' ', hint = ' '},
+					symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
 					-- always_visible = true,
 				}, 'encoding', 'fileformat', clients_lsp },
 			lualine_y = { 'filetype' },

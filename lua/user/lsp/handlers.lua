@@ -133,11 +133,11 @@ end
 local function lsp_whichkey(bufnr)
 	local whichkey_status, whichkey = pcall(require, "which-key")
 	if whichkey_status then
-		whichkey.register({["<Leader>t"] = {name = "LSP"}}, {buffer = bufnr})
+		whichkey.add({"<Leader>t", group = "LSP"}, {buffer = bufnr})
 	end
 end
 
-local function lsp_signature(bufnr)
+local function lsp_signature_setup(bufnr)
 	local lsp_signature_ok, lsp_signature = pcall(require, "lsp_signature")
 	if lsp_signature_ok then
 		lsp_signature.on_attach({
@@ -155,10 +155,10 @@ M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
-	lsp_signature(bufnr)
+	lsp_signature_setup(bufnr)
 	lsp_whichkey(bufnr)
 	lsp_keymaps(bufnr)
-	lsp_highlight_document(client)
+	-- lsp_highlight_document(client)
 end
 
 -- capabilities

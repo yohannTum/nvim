@@ -8,5 +8,6 @@ return {
 	'folke/neodev.nvim',
 	'WhoIsSethDaniel/mason-tool-installer.nvim',
 	'ray-x/lsp_signature.nvim',
+	'mfussenegger/nvim-dap',
 	lazy = false,
 }

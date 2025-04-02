@@ -33,10 +33,16 @@ for _, server in pairs(mason_lspconfig.get_installed_servers()) do
 
 	if server == "jdtls" then goto continue end
 
-	if server == "ts_ls" then
-		lspconfig["tsserver"].setup(opts)
-		goto continue
-	end
+	-- Issue :
+	-- https://github.com/neovim/nvim-lspconfig/pull/3232#issuecomment-2331131934
+	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vtsls
+	--
+	-- Moving to vtsls?? (same thing but with more beta extensible tools :
+	-- https://github.com/pmizio/typescript-tools.nvim )
+	-- if server == "ts_ls" then
+	-- 	lspconfig["tsserver"].setup(opts)
+	-- 	goto continue
+	-- end
 
 	lspconfig[server].setup(opts)
 	::continue::

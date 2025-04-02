@@ -4,6 +4,7 @@ end
 
 return {
 	'lewis6991/gitsigns.nvim',
+	tag = 'v0.9.0',
 	config = function ()
 		vim.api.nvim_set_keymap("n", "<Leader>gh", ":Gitsigns preview_hunk<CR>", optsdesc('preview hunks'))
 
@@ -23,8 +24,8 @@ return {
 				change = { hl = "GitSignsChange", text = "▌", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 				delete = { hl = "GitSignsDelete", text = "▁", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 				topdelete = { hl = "GitSignsDelete", text = "▔", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-				-- changedelete = { hl = "GitSignsChange", text = "±", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-				changedelete = { hl = "GitSignsChange", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+				changedelete = { hl = "GitSignsChange", text = "±", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+				-- changedelete = { hl = "GitSignsChange", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 				untracked = { hl = "GitSignsAdd", text = "🟉", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 			},
 			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

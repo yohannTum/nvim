@@ -4,10 +4,10 @@ return {
 	lazy = false,
 	config = function ()
 		local whichkey = require("which-key")
-		whichkey.register({
+		whichkey.add({
 			-- GROUP NAMES
-			["<Leader>"] = { name = "Extend" },
-			["/"] = { name = "Search" },
+			{ "<Leader>/", group = "Search" },
+			{ "<Leader><Leader>", group = "Extend" },
 		}, { prefix = "<Leader>" })
 	end,
 	init = function()

@@ -9,12 +9,12 @@ end
 
 local whichkey_status, whichkey = pcall(require, "which-key")
 if whichkey_status then
-	whichkey.register({ ["<Leader>/G"] = { name = "Git" } })
-	whichkey.register({ ["<Leader>/w"] = { name = "Workspaces" } })
+	whichkey.add({ "<Leader>/G", group = "Git" })
+	whichkey.add({ "<Leader>/w", group = "Workspaces" })
 end
 
 return {
-	'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	'nvim-telescope/telescope.nvim', tag = '0.1.3',
 	dependencies = {
 		{ 'nvim-lua/plenary.nvim' },
 
@@ -32,8 +32,7 @@ return {
 		{"<Leader>/Gb", ":Telescope git_branches<CR>", desc = 'Git branches', noremap = true , silent = true},
 		{"<Leader>/Gs", ":Telescope git_status<CR>", desc = 'Git status', noremap = true , silent = true},
 	},
-	config = {
-		-- :h telescope.defaults.layout_strategy
+	opts = {
 		layout_strategy = 'horizontal',
 		sorting_strategy = 'ascending',
 		color_devicons = true,

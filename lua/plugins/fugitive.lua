@@ -11,7 +11,7 @@ return {
 		-- TODO: attach buffer when git is available
 		local whichkey_status, whichkey = pcall(require, "which-key")
 		if whichkey_status then
-			whichkey.register({ ["<Leader>g"] = { name = "Git" } --[[, { buffer = bufnr }]]})
+			whichkey.add({ "<Leader>g", group = "Git" --[[, { buffer = bufnr }]]})
 		end
 
 		-- local util = require 'lspconfig.util'

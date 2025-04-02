@@ -8,7 +8,7 @@ end
 local whichkey_status, whichkey = pcall(require, "which-key")
 if whichkey_status then
 	-- whichkey.register({ ["<Leader>t"] = { name = "LSP" } }, { buffer = bufnr })
-	whichkey.register({ ["<Leader>r"] = { name = "Run" } })
+	whichkey.add({ "<Leader>r", group = "Run" })
 end
 
 local runCommand = ""

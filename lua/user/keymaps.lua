@@ -2,7 +2,7 @@ local keymap = vim.api.nvim_set_keymap
 
 local opts = { noremap = true, silent = true }
 
-local function opts_desc (desc)
+local function opts_desc(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
 
@@ -53,13 +53,31 @@ https://vi.stackexchange.com/questions/26818/vim-not-storing-numbered-registers
 -- :autocmd TextYankPost * call SaveLastReg()
 
 -- Copy and paste modified behavior
+if vim.env.REMOTE_DEV then
+	vim.g.clipboard = {
+		name = 'myClipboard',
+		copy = {
+			['+'] = { 'tee', '>', '/tmp/clip.in' },
+			['*'] = { 'tee', '>', '/tmp/clip.in' },
+		},
+		paste = {
+			['+'] = { 'cat', '/tmp/clip.out' },
+			['*'] = { 'cat', '/tmp/clip.out' },
+		},
+		cache_enabled = 1
+	}
+end
+
 -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 keymap("v", "p", 'p:let @"=@0<CR>', opts) -- not overiding register, only in visual mode
-keymap("n", "<leader>p", '"+p', opts) -- paste from system clipboard
-keymap("v", "<leader>p", '"+p', opts) -- paste from system clipboard
+keymap("n", "<leader>p", '"+p', { silent = true, noremap = true, desc = "paste into system clipboard" })     -- paste from system clipboard
+keymap("v", "<leader>p", '"+p', { silent = true, noremap = true, desc = "paste into system clipboard" })     -- paste from system clipboard
 
-keymap("n", "<leader>y", '"+y', opts) -- copy into system clipboard
-keymap("v", "<leader>y", '"+y', { silent = true, noremap = true, desc = "paste into system clipboard" })
+keymap("n", "<leader>y", '"+y', { silent = true, noremap = true, desc = "copy into system clipboard" })
+keymap("v", "<leader>y", '"+y', { silent = true, noremap = true, desc = "copy into system clipboard" })
+
+keymap("n", "<leader>d", '"+d', { silent = true, noremap = true, desc = "cut into system clipboard" })
+keymap("v", "<leader>d", '"+d', { silent = true, noremap = true, desc = "cut into system clipboard" })
 -- keymap("n", "<leader>Y", '"+Y', term_opts)
 
 -- Making it default? and map <leader>d as regular?
@@ -144,8 +162,8 @@ end
 -- when the cursor is positioned at the top of a file
 keymap("n", "<A-j>", ":lua BetterCTRL_D()<CR>zz", opts)
 keymap("n", "<A-k>", ":lua BetterCTRL_U()<CR>zz", opts)
--- keymap("n", "<A-j>", "<C-d>zz", opts)
--- keymap("n", "<A-k>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("v", "<A-j>", "10j", opts)
 keymap("v", "<A-k>", "10k", opts)
 

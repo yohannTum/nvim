@@ -94,7 +94,7 @@ return {
 			hooks = { -- See ':h diffview-config-hooks'
 				diff_buf_read = function(bufnr)
 					if whichkey_status then
-						whichkey.register({ ["<Leader>gc"] = { name = "Choose Conflict" } }, { buffer = bufnr })
+						whichkey.add({ "<Leader>gc", group = "Choose Conflict" }, { buffer = bufnr })
 					end
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gu", ":lua require('diffview.actions').focus_files()<CR>", optsdesc("Focus File Panel"))
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gb", ":lua require('diffview.actions').toggle_files()<CR>", optsdesc("Toggle File Panel"))
