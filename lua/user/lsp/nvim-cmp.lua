@@ -42,6 +42,9 @@ end
 
 cmp.setup {
 	CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+	completion = {
+		autocomplete = false,
+	},
 	mapping = {
 		['<Enter>'] = cmp.mapping.confirm({ select = false }),
 		['<C-n>'] = cmp.mapping(function(fallback)
@@ -49,6 +52,7 @@ cmp.setup {
 				cmp.select_next_item()
 			elseif has_words_before() then
 				cmp.complete()
+				cmp.select_next_item()
 			else
 				fallback()
 			end
@@ -79,6 +83,7 @@ cmp.setup {
 	},
 	formatting = {
 		fields = { "abbr", "kind", "menu" },
+		expandable_indicator = true,
 		format = function(entry, vim_item)
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 			vim_item.menu = ({
@@ -99,15 +104,15 @@ cmp.setup {
 	},
 	sources = {
 		{ name = "gh_issues" },
-		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "path", option = { trailing_slash = true } },
 		{ name = "luasnip" },
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		-- { name = "nvim_lsp_signature_help" },
+		{ name = "path", option = { trailing_slash = true } },
+		-- { name = "buffer", keyword_length = 5 },
 	},
 	experimental = {
 		-- native_menu = false,
-		-- ghost_text = true,
+		ghost_text = false,
 	}
 }

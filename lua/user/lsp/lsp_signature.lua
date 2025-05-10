@@ -8,4 +8,6 @@ lsp_signature.setup({
 	extra_trigger_chars = {"(", ","},
 	floating_window = true,
 	floating_window_above_cur_line = true,
+	hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+	toggle_key = '<C-s>'
 })
