@@ -31,6 +31,7 @@ vim.opt.scrolloff = 0
 vim.opt.showcmd = true
 vim.opt.showmode = false -- handled by airline
 vim.opt.sidescrolloff = 5
+vim.opt.signcolumn = "yes:1"
 vim.opt.smartindent = true
 vim.opt.smartcase = true
 vim.opt.swapfile = false
