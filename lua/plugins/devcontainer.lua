@@ -25,7 +25,7 @@
 -- call nvim_win_set_option(win, 'winhl', 'Normal:MyHighlight')
 
 -- Don't load the plugin if the directory doesn't exists
-if vim.fn.isdirectory("/home/yohann/plugins/nvim-dev-container") == 0 then
+if vim.fn.isdirectory(vim.env.HOME .. "/plugins/nvim-dev-container") == 0 then
 	return {}
 end
 
