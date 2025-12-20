@@ -15,9 +15,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('plugins')
--- require('lazy').setup({
--- 	spec = {
--- 		{ import = 'plugins' }
--- 	}
--- })
+require('lazy').setup({
+	spec = {
+		-- import your plugins
+		{ import = 'plugins' }
+	},
+	change_detection = {
+		notify = false
+	}
+})
+
+local keymap = vim.api.nvim_set_keymap
+local function optsdesc(desc)
+	return { desc = desc, noremap = true, silent = true }
+end
+
+keymap("n", "<leader>r", ":Lazy reload drag-window.nvim<CR>", optsdesc("Lazy reload drag-window.nvim"))

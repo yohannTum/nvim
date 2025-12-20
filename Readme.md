@@ -232,3 +232,40 @@ Git things :
 - https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/SubmittingPatches?id=HEAD
 - https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 - https://cbea.ms/git-commit/
+
+
+# Notes TODO :
+
+## Why not
+"I map H to ^ and L to $ so much nicer."
+
+"I use gh for ^ and gl for $, so i can use H and L to resize the window.
+As J and K can't be re map, and you need on 2 keys for resize.
+gj and gk i change a lot, c-d c-u or 5j and 5k, but the one i landed on is next/prev lsp error."
+
+"I do gl = $ and gh = 0
+I also remapped L to w and H to b"
+
+"I take that a step further to jump between the first non-whitespace character and actual column 0:
+map("n", "H", "(col('.') == matchend(getline('.'), '^\\s*')+1 ? '0' : '^')", { expr = true })"
+
+"Mine is similar. c-h and c-l to jump to beginning and EOL.
+In addition, I remap c-u and c-d (jump up and down) to c-k and c-j. So ctrl+hjkl just jumps everywhere.
+``` lua
+noremap <c-h> ^
+noremap <c-j> <c-d>zz
+noremap <c-k> <c-u>zz
+noremap <c-l> $
+```
+"
+
+## Not sure about gh/gl (gh already used by default)
+"sue me
+
+vim.keymap.set({ "n", "v" }, "gh", "^")
+vim.keymap.set({ "n", "v" }, "gl", "$")
+vim.keymap.set({ "n", "v" }, "gj", "%")"
+
+"vim.keymap.set({ "n", "v" }, "go", "%", { desc = "Go to matching symbol" })
+
+as in [g]o to [o]ther (pair of parens/brackets/etc)"

@@ -1,0 +1,33 @@
+Breaking Changes (7)
+dressing.nvim 0.52ms  start     ■ updated from 6bde51a to 2d7c2db
+gitsigns.nvim 0.76ms  start     ■ updated from 5a2b120 to 4c40357
+nvim-lspconfig 3.24ms  start     ■ updated from 9962e25 to 62c5fac
+nvim-treesitter 8.73ms  start     ■ updated from 51562d4 to 99487eb
+plenary.nvim 0.25ms  harpoon     ■ updated from 267282a to 857c5ac
+vimtex 0.48ms  start     ■ updated from e3d0bea to 096a045
+which-key.nvim 0.79ms  start     ■ updated from 7ccf476 to 370ec46
+
+Updated (25)
+cmp-cmdline 0.35ms  start     ■ updated from 8ee981b to d250c63
+cmp_luasnip 0.2ms  start     ■ updated from 1809552 to 98d9cb5
+conform.nvim  <Leader>f ()  BufReadPre  BufNewFile      ■ updated to 9.0.0
+diffview.nvim  <leader>gm      ■ updated from db97e66 to 4516612
+friendly-snippets 0.22ms  start     ■ updated from 377d454 to efff286
+fzf  <Leader>/z  <Leader>/Z      ■ updated to 0.42.0
+lazy.nvim 5.78ms  init.lua     ■ updated to 11.17.1
+LuaSnip 3.41ms  start     ■ updated from c4d6298 to c9b9a22
+mason-lspconfig.nvim 0.03ms  start     ■ updated to 1.32.0
+mason-tool-installer.nvim 1.63ms  start     ■ updated from c5e07b8 to 5639d58
+mason.nvim 0.04ms 󰢱 mason-registry  mason-tool-installer.nvim     ■ updated to 1.11.0
+neodev.nvim 0.35ms  start     ■ updated from f8a4200 to 46aa467
+nvim-cmp 0.9ms  start     ■ updated from 1250990 to 5a11682
+nvim-dap 0.3ms  start     ■ updated from 52302f0 to 379cf26
+nvim-scrollbar 0.85ms  start     ■ updated from 35f99d5 to 6994eb9
+nvim-treesitter-textobjects 3.9ms  nvim-treesitter     ■ updated from ad8f0a4 to 88fce4e
+nvim-web-devicons 0.35ms  nvim-tree.lua     ■ updated from cfc8824 to b34362b
+playground 0.37ms  nvim-treesitter     ■ updated from 2b81a01 to ba48c6a
+telescope-fzf-native.nvim 0.24ms  telescope.nvim     ■ updated from 9bc8237 to 2a5ceff
+telescope-symbols.nvim 0.24ms  telescope.nvim     ■ updated from f206011 to a6d0127
+tokyonight.nvim 0.38ms  start     ■ updated from c3ab53c to 057ef5d
+vim-fugitive 1.15ms  start     ■ updated from b3b838d to 4a745ea
+vim-vue 0.1ms  start     ■ updated from c424294 to 6ae8fa7
